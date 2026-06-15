@@ -18,7 +18,7 @@ if os.path.exists(css_path):
 
 # Initialize Session States
 session_states = {
-    "api_key": "***REMOVED***",
+    "api_key": "",
     "notes_text": "",
     "notes_summary": "",
     
