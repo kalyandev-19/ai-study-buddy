@@ -1,6 +1,10 @@
 import os
 import streamlit as st
+from dotenv import load_dotenv
 import utils
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Page Configuration
 st.set_page_config(
@@ -18,7 +22,7 @@ if os.path.exists(css_path):
 
 # Initialize Session States
 session_states = {
-    "api_key": "",
+    "api_key": os.getenv("GEMINI_API_KEY", ""),
     "notes_text": "",
     "notes_summary": "",
     
