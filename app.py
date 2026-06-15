@@ -3,8 +3,15 @@ import streamlit as st
 from dotenv import load_dotenv
 import utils
 
-# Load environment variables from .env file
+# Load .env for local development
 load_dotenv()
+
+# Resolve API key: Streamlit Cloud secrets → .env → empty
+def get_api_key():
+    try:
+        return st.secrets["GEMINI_API_KEY"]
+    except Exception:
+        return os.getenv("GEMINI_API_KEY", "")
 
 # Page Configuration
 st.set_page_config(
@@ -22,7 +29,7 @@ if os.path.exists(css_path):
 
 # Initialize Session States
 session_states = {
-    "api_key": os.getenv("GEMINI_API_KEY", ""),
+    "api_key": get_api_key(),
     "notes_text": "",
     "notes_summary": "",
     
